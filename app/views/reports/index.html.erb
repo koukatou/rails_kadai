@@ -31,7 +31,13 @@
 
 </div>
 
+<% f = Array.new %>
+<% f = [(@page_num - (@page_num -1)), (@page_num - (@page_num -2)), (@page_num - (@page_num -3)), (@page_num - (@page_num -4)), (@page_num - (@page_num -5))] %>
+
 <div class="navigate">
+	<% f.each do |ob| %>
+		<a href ="/report/<%= ob %>"><%= ob %></a>
+	<% end %>
 	<% if @page_num > 0 then %>
 		<a href="/report/<%= @page_num - 1 %>">＜＜前のページ</a>
 	<% end %>
