@@ -1,0 +1,10 @@
+<h3 class="show_title">User ID：<%= @report.user_id %></h3>
+<p class="show_read"><%= @report.user.name %></p>
+<% contents = @report.report.split "\n" %>
+<div class="show_content">
+<% contents.each do |paragraph| %>
+	<p><%= paragraph %></p>
+<% end %>
+</div>
+<p class="show_created">(<%= @report.created_at %>)</p>
+<p class="show_add">登録日：<%= @report.entry_date %></p>

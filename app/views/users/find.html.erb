@@ -1,0 +1,26 @@
+<h1>User#Find</h1>
+<p><%= @msg %></p>
+<table>
+	<%= form_tag(controller: "users", action: "find") do %>
+	<tr><th>FIND</th>
+		<td><%= text_field_tag("find") %></td></tr>
+	<tr><th></th>
+		<td><%= submit_tag("Click") %></td></tr>
+	</tr>
+	<% end %>
+</table>
+<hr>
+<table>
+	<tr>
+		<th>Id</th><th>Name</th><th>Kana</th><th>Memo</th>
+	</tr>
+	<% @user.each do |obj| %>
+	<tr>
+		<td><%= obj.id %></td>
+		<td><%= obj.name %></td>
+		<td><%= obj.kana %></td>
+		<td><%= obj.memo %></td>
+	</tr>
+	<% end %>
+</table>
+<a href="/user">TOP</a>

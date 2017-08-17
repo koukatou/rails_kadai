@@ -1,0 +1,23 @@
+<h1>Report#add</h1>
+<p>※日報の投稿</p>
+<% if @report.errors.any? %>
+<ul>
+	<% @report.errors.full_messages.each do |err| %>
+		<li><%= err %></li>
+	<% end %>
+</ul>
+<% end %>
+<table>
+	<%= form_for(@report, url:{controller:'reports', action:'add'}) do |form| %>
+	<tr><th>Date</th>
+		<td><%= form.text_field :entry_date %></td></tr>
+	<tr><th>User</th>
+		<td><%= form.collection_select :user_id, User.all, :id, :name %></td></tr>
+	<tr><th>Division</th>
+		<td><%= form.collection_select :division_id, Division.all, :id, :name %></td></tr>
+	<tr><th>Report</th>
+		<td><%= form.text_area :report, {cols:40, rows:10} %></td></tr>
+	<tr><th></th>
+		<td><%= form.submit "送信" %></td></tr>
+	<% end %>
+</table>

@@ -1,0 +1,12 @@
+<h3 class="show_title">User ID：<%= @report.user_id %></h3>
+<p class="show_read"><%= @report.user.name %></p>
+<% count = 0 %>
+<% @data.each do |obj| %>
+	<h3 class="top_title"><a href="/report/detail/<%= obj.id %>">
+		(<%= obj.entry_date %>)</a></h3>
+	<hr>
+	    <% count = count + 1 %>
+	    <% if count == 5 then %>
+	        <% break %>
+	    <% end %>
+<% end %>

@@ -1,0 +1,18 @@
+<h1>User#Edit</h1>
+<p><%= @msg %></p>
+<table>
+	<%= form_for(@user, url:{controller:'users', action:'update', id: @user.id}) do |form| %>
+	<tr><th>Name</th>
+		<td><%= form.text_field :name %></td></tr>
+	<tr><th>Kana</th>
+		<td><%= form.text_field :kana %></td></tr>
+	<tr><th>Memo</th>
+		<td><%= form.text_area :memo %></td></tr>
+		<tr><th>Division_id</th>
+        <td><%= form.collection_select :division_id, Division.all, :id, :name %></td></tr>
+	</tr>
+	<tr><th></th>
+		<td><%= form.submit "送信" %></td></tr>
+	</tr>
+	<% end %>
+</table>
