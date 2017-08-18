@@ -1,5 +1,5 @@
-<h1>Report#add</h1>
-<p>※日報の投稿</p>
+<h1>Report#edit</h1>
+<p>※「<%= @report.entry_date %>」の日報の編集</p>
 <% if @report.errors.any? %>
 <ul>
 	<% @report.errors.full_messages.each do |err| %>
@@ -8,7 +8,7 @@
 </ul>
 <% end %>
 <table>
-	<%= form_for(@report, url:{controller:'reports', action:'add'}) do |form| %>
+	<%= form_for(@report, url:{controller:'reports', action:'edit'}) do |form| %>
 	<tr><th>Date</th>
 		<td><%= form.text_field :entry_date %></td></tr>
 	<tr><th>User</th>

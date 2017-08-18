@@ -1,6 +1,8 @@
 <h1>Report#index</h1>
 <p>※日報の一覧</p>
 <p><a href="/report/add">新規作成</a></p>
+<p><a href="/user/add">User作成</a></p>
+<p><a href="/division/add">部署名追加</a></p>
 		<% require 'date' %>
 		<% now = Date.today %>
 <table>
@@ -21,22 +23,25 @@
 	<h3 class="top_title"><a href="/report/show/<%= obj.id %>">
 		<%= obj.user.name %></a></h3>
 	<p class="top_created">
-		(<%= obj.entry_date %>)</p>
+		(<%= obj.entry_date %>):<a href ="/report/edit/<%=obj.id %>">編集</a>:
+		<a href ="/report/delete/<%= obj.id %>">削除</a></p>
 	<hr>
 <% end %>
 
-<div class="pager">
-	
-	<%= paginate @allpage %>
-
-</div>
-
 <% f = Array.new %>
-<% f = [(@page_num - (@page_num -1)), (@page_num - (@page_num -2)), (@page_num - (@page_num -3)), (@page_num - (@page_num -4)), (@page_num - (@page_num -5))] %>
+<% f = [(@page_num - 3), 
+		(@page_num - 2), 
+		(@page_num - 1), 
+		(@page_num), 
+		(@page_num + 1),
+		(@page_num + 2), 
+		(@page_num + 3)] %>
 
 <div class="navigate">
 	<% f.each do |ob| %>
+		<% if ob > 0 then %>
 		<a href ="/report/<%= ob %>"><%= ob %></a>
+		<% end %>
 	<% end %>
 	<% if @page_num > 0 then %>
 		<a href="/report/<%= @page_num - 1 %>">＜＜前のページ</a>

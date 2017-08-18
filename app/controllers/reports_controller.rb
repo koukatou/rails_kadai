@@ -6,13 +6,13 @@ class ReportsController < ApplicationController
 		page_size = 10
 		@page_num = 0
 		if params[:page] != nil then
-			@page_num = params[:page].to_i - 1
+			@page_num = params[:page].to_i 
 		end
 		@data = Report.all.order('created_at desc')
 			.offset(page_size * @page_num)
 			.limit(page_size)
-			@allpage = Report.page(params[:page]).per(PER)
-			#@data = Array.new
+			# @allpage = Report.page(params[:page]).per(PER)
+
 			if request.post? then
 			f = params[:date]
 			g = params[:date2]
@@ -25,17 +25,21 @@ class ReportsController < ApplicationController
 	def add
 		@report = Report.new
 		if request.post? then
-			@report = Report.create(report_params)
-			redirect_to '/report'
+			@report = Report.new(report_params)
+			if @report.valid?
+				@report = Report.create(report_params)
+				redirect_to '/report/'
+			else
+				render :action => 'add'
+			end
 		end
 	end
 
 
 	def edit
-		@report = Report.find params[:id]
-		@report = Report.all
+		@report = Report.find(params[:id])
 		if  request.patch? then
-			@report.update report_params
+			@report.update(report_params)
 			redirect_to '/report'
 		end
 	end
